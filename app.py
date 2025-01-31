@@ -22,9 +22,6 @@ collection = db[COLLECTION_NAME]  # Sélectionner la collection
 
 app = Flask(__name__)
 
-db = client["mydatabase"]
-collection = db["mycollection"]
-
 @app.route('/create_collection', methods=['GET'])
 def create_collection():
     # Ajouter un premier document si la collection est vide
