@@ -16,6 +16,9 @@ COLLECTION_NAME = os.getenv("COLLECTION_NAME")
 DB_NAME = os.getenv("DB_NAME")
 
 joblib_path = "/mnt/c/Users/Utilisateur/Documents/fichier_python/___BRIEFS/TP13/deploy_surveill/"
+joblib_path = ""
+
+
 pipeline = joblib.load(joblib_path + "model.joblib", mmap_mode=None)
 
 uri = f"mongodb+srv://{USER_MONGODB}:{PASSWORD_MONGODB}@{HOST_MONGODB}/?retryWrites=true&w=majority&appName={MONGO_DB_APPNAME}"
