@@ -5,6 +5,8 @@ from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 import os
 import joblib
+from datetime import datetime
+
 
 load_dotenv()
 
@@ -54,8 +56,8 @@ def feedback():
     phrase = request.form.get("label_phrase")   
     prediction = request.form.get("prediction")   
     validation = request.form.get("feedback")
-
-    collection.insert_one({"message": phrase, "prediction":prediction, "validation":validation })
+    current_dateTime = datetime.now()
+    collection.insert_one({"message": phrase, "prediction":prediction, "validation":validation, "datetime":current_dateTime })
     
     print("Page de feedback chargée\n")
     return render_template("feedback.html", phrase_on_page=phrase, prediction_on_page=prediction, validation_on_page=validation)
