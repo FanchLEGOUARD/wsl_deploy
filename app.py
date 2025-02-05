@@ -1,4 +1,3 @@
-
 from flask import Flask, jsonify, request, render_template, redirect, url_for
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
@@ -6,7 +5,6 @@ from dotenv import load_dotenv
 import os
 import joblib
 from datetime import datetime
-
 
 load_dotenv()
 
@@ -20,17 +18,16 @@ DB_NAME = os.getenv("DB_NAME")
 joblib_path = "/mnt/c/Users/Utilisateur/Documents/fichier_python/___BRIEFS/TP13/deploy_surveill/"
 joblib_path = ""
 
-
 pipeline = joblib.load(joblib_path + "model.joblib", mmap_mode=None)
 
 uri = f"mongodb+srv://{USER_MONGODB}:{PASSWORD_MONGODB}@{HOST_MONGODB}/?retryWrites=true&w=majority&appName={MONGO_DB_APPNAME}"
-
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 db = client[DB_NAME]  # Sélectionner la base de données
 collection = db[COLLECTION_NAME]  # Sélectionner la collection
 
 app = Flask(__name__)
+
 
 
 @app.route('/create_collection', methods=['GET'])
@@ -81,4 +78,5 @@ def result():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
